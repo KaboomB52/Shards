@@ -38,10 +38,10 @@ public class ShardCommand extends BukkitCommand {
             player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "SHARDS " + ChatColor.GRAY + "(help topic):");
             player.sendMessage("");
             player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shards <||player||>" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Shows the balance of any player.");
-            player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shards check <||player||>" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Shows the balance of any player.");
-            player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shards set <player> [value]" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Sets the balance of any player.");
-            player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shards reset <player>" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Resets the balance of any player.");
-            player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shards help" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Shows this help message.");
+            player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shard check <||player||>" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Shows the balance of any player.");
+            player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shard set <player> [value]" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Sets the balance of any player.");
+            player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shard reset <player>" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Resets the balance of any player.");
+            player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shard help" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Shows this help message.");
             player.sendMessage("");
 
             return true;
@@ -56,10 +56,10 @@ public class ShardCommand extends BukkitCommand {
                 player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "SHARDS " + ChatColor.GRAY + "(help topic):");
                 player.sendMessage("");
                 player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shards <||player||>" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Shows the balance of any player.");
-                player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shards check <||player||>" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Shows the balance of any player.");
-                player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shards set <player> [value]" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Sets the balance of any player.");
-                player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shards reset <player>" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Resets the balance of any player.");
-                player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shards help" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Shows this help message.");
+                player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shard check <||player||>" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Shows the balance of any player.");
+                player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shard set <player> [value]" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Sets the balance of any player.");
+                player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shard reset <player>" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Resets the balance of any player.");
+                player.sendMessage(ChatColor.GREEN + ChatColor.BOLD.toString() + "❘ " + ChatColor.AQUA + "/shard help" + ChatColor.DARK_GRAY + " - " + ChatColor.GREEN + "Shows this help message.");
                 player.sendMessage("");
 
                 break;
@@ -146,7 +146,7 @@ public class ShardCommand extends BukkitCommand {
             case 2: {
                 List completions = new ArrayList();
                 String toComplete = args[1].toLowerCase();
-                OfflinePlayer[] var6 = (Bukkit.getOfflinePlayers());
+                Player[] var6 = (Bukkit.getOnlinePlayers()).toArray(new Player[0]);
                 int var7 = var6.length;
 
                 for (int var8 = 0; var8 < var7; ++var8) {
