@@ -1,30 +1,27 @@
 package dev.ianrich.shards.command;
 
 import com.google.common.collect.ImmutableList;
+import dev.ianrich.shards.Shards;
 import dev.ianrich.shards.api.ShardsAPI;
 import dev.ianrich.shards.util.Formatting;
 import org.apache.commons.lang3.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.defaults.BukkitCommand;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShardCommand extends BukkitCommand {
-
-    public ShardCommand() {
-        super("shard");
-        super.getAliases().add("shart"); // I'm "mature". - Ian
-        setDescription("The main command for the Shards plugin.");
-    }
+public class ShardCommand implements CommandExecutor {
 
     @Override
-    public boolean execute(CommandSender commandSender, String s, String[] strings) {
+    public boolean onCommand(CommandSender commandSender, Command command, String label, String[] strings) {
 
         if (!(commandSender instanceof Player)) {
             return false;
@@ -118,55 +115,5 @@ public class ShardCommand extends BukkitCommand {
         }
 
         return true;
-    }
-
-    @Override
-    public List tabComplete(CommandSender sender, String alias, String[] args) {
-        Validate.notNull(sender, "Sender cannot be null");
-        Validate.notNull(args, "Arguments cannot be null");
-        Validate.notNull(alias, "Alias cannot be null");
-
-        List completions = new ArrayList();
-
-        switch (args.length) {
-
-            case 1: {
-
-                String toComplete = args[0].toLowerCase();
-                String[] var6 = {"check", "set", "reset", "help"};
-                int var7 = var6.length;
-
-                for (int var8 = 0; var8 < var7; ++var8) {
-                    String str = var6[var8];
-                    if (StringUtil.startsWithIgnoreCase(str, toComplete)) {
-                        completions.add(str);
-                    }
-                }
-
-                break;
-            }
-
-            case 2: {
-                String toComplete = args[1].toLowerCase();
-                Player[] var6 = (Bukkit.getOnlinePlayers()).toArray(new Player[0]);
-                int var7 = var6.length;
-
-                for (int var8 = 0; var8 < var7; ++var8) {
-                    OfflinePlayer player = var6[var8];
-                    if (StringUtil.startsWithIgnoreCase(player.getName(), toComplete)) {
-                        completions.add(player.getName());
-                    }
-                }
-
-                break;
-            }
-
-            default: {
-                return ImmutableList.of();
-
-            }
-        }
-
-        return completions;
     }
 }

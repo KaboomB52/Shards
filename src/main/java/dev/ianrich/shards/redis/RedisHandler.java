@@ -11,11 +11,11 @@ public class RedisHandler {
     JedisPool jedisPool;
 
     public RedisHandler(){
-        Bukkit.getLogger().info("Redis Handler initializing...");
+        Bukkit.getLogger().info("[Shards] Redis Handler initializing...");
 
         connect();
 
-        Bukkit.getLogger().info("Redis Handler initialized!");
+        Bukkit.getLogger().info("[Shards] Redis Handler initialized!");
     }
 
     private void connect() {

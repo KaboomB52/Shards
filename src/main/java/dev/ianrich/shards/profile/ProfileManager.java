@@ -17,12 +17,12 @@ public class ProfileManager {
     List<ShardProfile> profiles;
 
     public ProfileManager(){
-        Bukkit.getLogger().info("Profile Manager initializing...");
+        Bukkit.getLogger().info("[Shards] Profile Manager initializing...");
 
         profiles = new ArrayList<>();
         Bukkit.getPluginManager().registerEvents(new ConnectionListener(), Shards.instance);
 
-        Bukkit.getLogger().info("Profile Manager initialized!");
+        Bukkit.getLogger().info("[Shards] Profile Manager initialized!");
     }
 
     public ShardProfile loadProfile(Player player){

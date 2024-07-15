@@ -7,3 +7,9 @@ authors: ["Ian Rich"]
 softdepend: ["PlaceholderAPI"]
 
 api-version: 1.9 # For 1.9+ Support
+
+commands:
+  shard:
+    description: The main command for the Shards plugin.
+  shards:
+    description: Check a player's Shard balance!

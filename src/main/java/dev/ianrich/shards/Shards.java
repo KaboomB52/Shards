@@ -2,6 +2,7 @@ package dev.ianrich.shards;
 
 import dev.ianrich.shards.bstats.Metrics;
 import dev.ianrich.shards.command.ShardCommand;
+import dev.ianrich.shards.command.ShardTabCompleter;
 import dev.ianrich.shards.command.ShardsCommand;
 import dev.ianrich.shards.hook.ShardPlaceholderExpansion;
 import dev.ianrich.shards.profile.ProfileManager;
@@ -33,9 +34,12 @@ public class Shards extends JavaPlugin {
         redisHandler = new RedisHandler();
         profileManager = new ProfileManager();
 
-        // We register a really cool way...
-        Bukkit.getCommandMap().register("shards", new ShardCommand());
-        Bukkit.getCommandMap().register("shards", new ShardsCommand());
+        // We don't register a really cool way anymore :(
+        getCommand("shard").setExecutor(new ShardCommand());
+        getCommand("shard").setTabCompleter(new ShardTabCompleter());
+
+        getCommand("shards").setExecutor(new ShardsCommand());
+        getCommand("shards").setTabCompleter(new ShardTabCompleter());
 
         autoSaveTask = new AutoSaveTask(); // Guess who forgot to initialize this the first time... - Ian
         autoSaveTask.runTaskTimer(this, 20L, 20L*getConfig().getInt("auto-save.time")); // I don't actually know how long this is, probably fine tho...
@@ -50,12 +54,12 @@ public class Shards extends JavaPlugin {
 
     @Override
     public void onDisable(){
-        Bukkit.getLogger().info("Profile-Save started...");
+        Bukkit.getLogger().info("[Shards] Profile-Save started...");
         Shards.instance.getProfileManager().getProfiles().forEach(ShardProfile::saveProfile);
-        Bukkit.getLogger().info("Profile-Save finished (" + Shards.instance.getProfileManager().getProfiles().size() + " profiles!)");
+        Bukkit.getLogger().info("[Shards] Profile-Save finished (" + Shards.instance.getProfileManager().getProfiles().size() + " profiles!)");
 
         getRedisHandler().close();
-        Bukkit.getLogger().info("Disconnected from the Redis Database!");
+        Bukkit.getLogger().info("[Shards] Disconnected from the Redis Database!");
     }
 
 }

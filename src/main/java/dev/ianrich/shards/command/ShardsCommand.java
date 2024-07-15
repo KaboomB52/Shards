@@ -7,6 +7,8 @@ import org.apache.commons.lang3.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
@@ -15,18 +17,12 @@ import org.bukkit.util.StringUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShardsCommand extends BukkitCommand {
+// This command does the same thing as /shard check (but simpler) - Ian
 
-    public ShardsCommand() {
-
-        // This command does the same thing as /shard check (but simpler) - Ian
-
-        super("shards");
-        setDescription("Check a player's Shard balance!");
-    }
+public class ShardsCommand implements CommandExecutor {
 
     @Override
-    public boolean execute(CommandSender commandSender, String s, String[] strings) {
+    public boolean onCommand(CommandSender commandSender, Command command, String label, String[] strings) {
 
         if (!(commandSender instanceof Player)) {
             return false;
@@ -46,29 +42,5 @@ public class ShardsCommand extends BukkitCommand {
             }
         }
         return false;
-    }
-
-    @Override
-    public List tabComplete(CommandSender sender, String alias, String[] args) {
-        Validate.notNull(sender, "Sender cannot be null");
-        Validate.notNull(args, "Arguments cannot be null");
-        Validate.notNull(alias, "Alias cannot be null");
-        if (args.length == 1) {
-            List completions = new ArrayList();
-            String toComplete = args[0].toLowerCase();
-            OfflinePlayer[] var6 = (Bukkit.getOfflinePlayers());
-            int var7 = var6.length;
-
-            for (int var8 = 0; var8 < var7; ++var8) {
-                OfflinePlayer player = var6[var8];
-                if (StringUtil.startsWithIgnoreCase(player.getName(), toComplete)) {
-                    completions.add(player.getName());
-                }
-            }
-
-            return completions;
-        } else {
-            return ImmutableList.of();
-        }
     }
 }
