@@ -1,12 +1,15 @@
 package dev.ianrich.shards;
 
+import dev.ianrich.shards.bstats.Metrics;
 import dev.ianrich.shards.command.ShardCommand;
 import dev.ianrich.shards.command.ShardsCommand;
+import dev.ianrich.shards.hook.ShardPlaceholderExpansion;
 import dev.ianrich.shards.profile.ProfileManager;
 import dev.ianrich.shards.profile.ShardProfile;
 import dev.ianrich.shards.redis.RedisHandler;
 import dev.ianrich.shards.task.AutoSaveTask;
 import lombok.Getter;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,6 +22,8 @@ public class Shards extends JavaPlugin {
     public RedisHandler redisHandler;
 
     public AutoSaveTask autoSaveTask;
+
+    public Metrics metrics;
 
     @Override
     public void onEnable(){
@@ -34,6 +39,13 @@ public class Shards extends JavaPlugin {
 
         autoSaveTask = new AutoSaveTask(); // Guess who forgot to initialize this the first time... - Ian
         autoSaveTask.runTaskTimer(this, 20L, 20L*getConfig().getInt("auto-save.time")); // I don't actually know how long this is, probably fine tho...
+
+        metrics = new Metrics(this, 22660);
+
+        if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
+            PlaceholderAPI.registerExpansion(new ShardPlaceholderExpansion()); // We will find a solution when the time comes... - Ian
+        }
+
     }
 
     @Override

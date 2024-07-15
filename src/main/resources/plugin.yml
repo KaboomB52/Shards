@@ -4,3 +4,6 @@ version: '${project.version}'
 main: dev.ianrich.shards.Shards
 website: github.com/KaboomB52/
 authors: ["Ian Rich"]
+softdepend: ["PlaceholderAPI"]
+
+api-version: 1.9 # For 1.9+ Support

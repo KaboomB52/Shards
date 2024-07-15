@@ -82,8 +82,8 @@ public class ShardCommand extends BukkitCommand {
             }
 
             case "set": {
-                if(strings.length!=3) player.sendMessage(ChatColor.RED + "/shards set <player> [value]");
-                if(!player.hasPermission("shards.admin")) player.sendMessage(ChatColor.RED + "You don't have the required permissions for this command.");
+                if(strings.length!=3) {player.sendMessage(ChatColor.RED + "/shards set <player> [value]"); return false;}
+                if(!player.hasPermission("shards.admin")) {player.sendMessage(ChatColor.RED + "You don't have the required permissions for this command."); return false;}
 
                 // We use Offline Players instead of Online Players because they might be offline, dur. - Ian
                 if(Bukkit.getOfflinePlayer(strings[1]) != null){
@@ -99,8 +99,8 @@ public class ShardCommand extends BukkitCommand {
             }
 
             case "reset": {
-                if(strings.length!=2) player.sendMessage(ChatColor.RED + "/shards reset <player>");
-                if(!player.hasPermission("shards.admin")) player.sendMessage(ChatColor.RED + "You don't have the required permissions for this command.");
+                if(strings.length!=2) {player.sendMessage(ChatColor.RED + "/shards reset <player>"); return false;}
+                if(!player.hasPermission("shards.admin")) {player.sendMessage(ChatColor.RED + "You don't have the required permissions for this command."); return false;}
 
                 // We use Offline Players instead of Online Players because they might be offline, dur. - Ian
                 if(Bukkit.getOfflinePlayer(strings[1]) != null){
@@ -125,10 +125,13 @@ public class ShardCommand extends BukkitCommand {
         Validate.notNull(sender, "Sender cannot be null");
         Validate.notNull(args, "Arguments cannot be null");
         Validate.notNull(alias, "Alias cannot be null");
+
+        List completions = new ArrayList();
+
         switch (args.length) {
 
             case 1: {
-                List completions = new ArrayList();
+
                 String toComplete = args[0].toLowerCase();
                 String[] var6 = {"check", "set", "reset", "help"};
                 int var7 = var6.length;
@@ -140,11 +143,10 @@ public class ShardCommand extends BukkitCommand {
                     }
                 }
 
-                return completions;
+                break;
             }
 
             case 2: {
-                List completions = new ArrayList();
                 String toComplete = args[1].toLowerCase();
                 Player[] var6 = (Bukkit.getOnlinePlayers()).toArray(new Player[0]);
                 int var7 = var6.length;
@@ -156,7 +158,7 @@ public class ShardCommand extends BukkitCommand {
                     }
                 }
 
-                return completions;
+                break;
             }
 
             default: {
@@ -164,5 +166,7 @@ public class ShardCommand extends BukkitCommand {
 
             }
         }
+
+        return completions;
     }
 }
