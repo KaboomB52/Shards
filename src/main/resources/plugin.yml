@@ -1,0 +1,6 @@
+name: Shards
+description: A light and simple economy plugin.
+version: '${project.version}'
+main: dev.ianrich.shards.Shards
+website: github.com/KaboomB52/
+authors: ["Ian Rich"]

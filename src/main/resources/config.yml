@@ -1,0 +1,12 @@
+redis:
+  host: 127.0.0.1
+  port: 6379
+  id: 1
+
+redis-auth:
+  enabled: false
+  username: admin
+  password: asuperblyballularwordofthepass
+
+auto-save:
+  time: 60 # How many seconds between auto saves...
