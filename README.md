@@ -1,7 +1,8 @@
-<div>
-    <center><h1> Shards 💸</h1></center>
-    <center>A simple economy plugin inspired by Overcast's Raindrops economy.</center>
-    <center>Donate to my <a href="https://ko-fi.com/ianrich"><b>ko-fi</b></a> for more cool projects like this! ❤️</center>
+<div align="center">
+<h1> Shards 💸</h1>
+A simple economy plugin inspired by Overcast's Raindrops economy.
+<br>
+Donate to my <a href="https://ko-fi.com/ianrich"><b>ko-fi</b></a> for more cool projects like this! ❤️
 </div>
 
 ### What is Shards?
