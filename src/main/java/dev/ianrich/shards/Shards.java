@@ -10,7 +10,7 @@ import dev.ianrich.shards.profile.ShardProfile;
 import dev.ianrich.shards.redis.RedisHandler;
 import dev.ianrich.shards.task.AutoSaveTask;
 import lombok.Getter;
-import me.clip.placeholderapi.PlaceholderAPI;
+import me.kaboom.hermes.Hermes;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -47,7 +47,7 @@ public class Shards extends JavaPlugin {
         metrics = new Metrics(this, 22660);
 
         if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
-            PlaceholderAPI.registerExpansion(new ShardPlaceholderExpansion()); // We will find a solution when the time comes... - Ian
+            new ShardPlaceholderExpansion().register(); // We will find a solution when the time comes... - Ian
         }
 
     }
@@ -57,9 +57,8 @@ public class Shards extends JavaPlugin {
         Bukkit.getLogger().info("[Shards] Profile-Save started...");
         Shards.instance.getProfileManager().getProfiles().forEach(ShardProfile::saveProfile);
         Bukkit.getLogger().info("[Shards] Profile-Save finished (" + Shards.instance.getProfileManager().getProfiles().size() + " profiles!)");
-
-        getRedisHandler().close();
-        Bukkit.getLogger().info("[Shards] Disconnected from the Redis Database!");
+        Hermes.jedisPool.close();
+        Bukkit.getLogger().info("[Hermes] Disconnected from the Redis Database!");
     }
 
 }

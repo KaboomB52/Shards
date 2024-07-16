@@ -24,23 +24,29 @@ public class ShardsCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String label, String[] strings) {
 
-        if (!(commandSender instanceof Player)) {
-            return false;
-        }
-
-        Player player = (Player) commandSender;
-
-        if(strings.length!=1){
-            player.sendMessage(ChatColor.AQUA + "Your Shards: " + ChatColor.GREEN + Formatting.addCommasToInteger(ShardsAPI.getProfile(player).getShards()));
-        } else {
-            if(Bukkit.getOfflinePlayer(strings[0]) != null){
+        if(!(commandSender instanceof Player)) {
+            if (Bukkit.getOfflinePlayer(strings[0]) != null) {
                 OfflinePlayer target = Bukkit.getOfflinePlayer(strings[0]);
 
-                player.sendMessage(target.getName() + ChatColor.AQUA + "'s Shards: " + ChatColor.GREEN + Formatting.addCommasToInteger(ShardsAPI.getProfile(target).getShards()));
+                commandSender.sendMessage(target.getName() + ChatColor.AQUA + "'s Shards: " + ChatColor.GREEN + Formatting.addCommasToInteger(ShardsAPI.getProfile(target).getShards()));
             } else {
-                player.sendMessage(strings[1] + ChatColor.RED + " does not have a profile.");
+                commandSender.sendMessage(strings[0] + ChatColor.RED + " does not have a profile.");
+            }
+        } else {
+            Player sender = (Player) commandSender;
+            if(strings.length!=1){
+                commandSender.sendMessage(ChatColor.AQUA + "Your Shards: " + ChatColor.GREEN + Formatting.addCommasToInteger(ShardsAPI.getProfile(sender).getShards()));
+            } else {
+                if(Bukkit.getOfflinePlayer(strings[0]) != null){
+                    OfflinePlayer target = Bukkit.getOfflinePlayer(strings[0]);
+
+                    commandSender.sendMessage(target.getName() + ChatColor.AQUA + "'s Shards: " + ChatColor.GREEN + Formatting.addCommasToInteger(ShardsAPI.getProfile(target).getShards()));
+                } else {
+                    commandSender.sendMessage(strings[0] + ChatColor.RED + " does not have a profile.");
+                }
             }
         }
+
         return false;
     }
 }
