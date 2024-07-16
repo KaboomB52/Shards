@@ -1,7 +1,7 @@
 package dev.ianrich.shards.redis.packet;
 
 import dev.ianrich.shards.api.ShardsAPI;
-import me.kaboom.hermes.model.RedisPacket;
+import dev.ianrich.hermes.model.RedisPacket;
 import org.bukkit.Bukkit;
 
 import java.util.UUID;

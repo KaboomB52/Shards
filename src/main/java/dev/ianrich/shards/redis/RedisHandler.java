@@ -1,7 +1,7 @@
 package dev.ianrich.shards.redis;
 
 import dev.ianrich.shards.Shards;
-import me.kaboom.hermes.Hermes;
+import dev.ianrich.hermes.Hermes;
 import org.bukkit.Bukkit;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;

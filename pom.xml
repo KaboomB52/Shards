@@ -114,7 +114,7 @@
             <systemPath>${project.basedir}/lib/PlaceholderAPI-2.11.6.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>me.kaboom</groupId>
+            <groupId>dev.ianrich</groupId>
             <artifactId>Hermes</artifactId>
             <version>1.0</version>
             <scope>compile</scope>

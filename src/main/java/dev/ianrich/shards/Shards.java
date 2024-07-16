@@ -10,7 +10,7 @@ import dev.ianrich.shards.profile.ShardProfile;
 import dev.ianrich.shards.redis.RedisHandler;
 import dev.ianrich.shards.task.AutoSaveTask;
 import lombok.Getter;
-import me.kaboom.hermes.Hermes;
+import dev.ianrich.hermes.Hermes;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
