@@ -13,7 +13,7 @@ public class AutoSaveTask extends BukkitRunnable {
     public void run() {
 
         Bukkit.getLogger().info("Auto-Save starting...");
-        Shards.instance.getProfileManager().getProfiles().forEach(ShardProfile::saveProfile);
+        Bukkit.getOnlinePlayers().forEach(p-> Shards.instance.getProfileManager().getOrCreateProfile(p).saveProfile());
         Bukkit.getLogger().info("Auto-Save finished (" + Shards.instance.getProfileManager().getProfiles().size() + " profiles!)");
     }
 
